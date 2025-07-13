@@ -1,10 +1,10 @@
-const Journal = require('../models/Journal'); // Make sure this is correctly named
+const JournalEntry = require('../models/Journal'); // Made changes here from journal to journalEntry
 
 // Create a new journal entry
 const createEntry = async (req, res) => {
   try {
     const { title, content, date } = req.body;
-    const newEntry = await Journal.create({ 
+    const newEntry = await JournalEntry.create({ ///made changes here
       title, 
       content, 
       date, 

@@ -15,6 +15,7 @@ const sequelize = require('./sequelize'); // your Sequelize instance
 // 🔁 Import models so associations (like User.hasMany) are registered
 require('./models/user');
 require('./models/Journal');
+require('./models/moodEntry');
 
 // 🔁 Sync database after models are registered
 sequelize.sync({ alter: true }) // or force: true for dev-only resets
@@ -38,14 +39,21 @@ app.get("/", (req,res)=> {
     res.send ("Health is Wealth")
 })
 
+const passport = require('passport');
+require('./passportJwtValidation');
+
 const authRouter= require('./router/auth.route')
 app.use('/auth',authRouter)
 
 const journalRoute = require('./router/Journal.route');
 app.use('/api/journal', journalRoute);
 
+var moodRoute= require('./router/mood.route');
+app.use('/mood',moodRoute);
 
 
+
+app.use(passport.initialize())
 
 app.listen(port,()=> {
     console.log(`running on port:${port}`);

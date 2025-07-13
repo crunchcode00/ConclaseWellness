@@ -24,6 +24,7 @@ passport.use(
   })
 );
 
+//const authenticate = passport.authenticate('jwt', { session: false });
 // Export middleware for route protection
 module.exports = {
   authenticate: passport.authenticate("jwt", { session: false }),
