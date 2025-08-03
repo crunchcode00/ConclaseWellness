@@ -2,7 +2,7 @@ require('dotenv').config()
 
 const express = require('express');
 const app = express()
-const port= 3002;
+const port= 3000;
 app.use(express.json());
 
 
@@ -12,12 +12,12 @@ app.use(express.json());
 
 const sequelize = require('./sequelize'); // your Sequelize instance
 
-// 🔁 Import models so associations (like User.hasMany) are registered
+//  Import models so associations (like User.hasMany) are registered
 require('./models/user');
 require('./models/Journal');
 require('./models/moodEntry');
 
-// 🔁 Sync database after models are registered
+//  Sync database after models are registered
 sequelize.sync({ alter: true }) // or force: true for dev-only resets
   .then(() => {
     console.log('Database synced');
